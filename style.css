@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100dvw;
+  height: 100dvh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+  flex-grow: 1;
+  background-color: #e1e3db;
+}
+
+header div {
+  padding: 0 40px;
+  gap: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+header div h2 {
+  text-align: center;
+  margin: auto;
+}
+
+header div input {
+  padding: 0 20px;
+}
+
+header div button {
+  padding: 10px;
+}
+
+section {
+  text-align: center;
+  flex-grow: 1;
+  padding-top: 20px;
+}
+
+main {
+  flex-grow: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 50px;
+}
+
+main img {
+  width: 550px;
+  height: 650px;
+  background-color: darkgray;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  height: 650px;
+  justify-content: space-between;
+}
+
+article div {
+  width: 100%;
+  height: 90px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+article div p {
+  margin: auto;
+  text-align: center;
+}
+
+#botoes {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  border-radius: 8px;
+}
+
+#botoes button {
+  width: 40%;
+}
