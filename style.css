@@ -17,7 +17,7 @@ header {
   background-color: #e1e3db;
 }
 
-header div {
+header form {
   padding: 0 40px;
   gap: 5px;
   text-align: center;
@@ -25,16 +25,16 @@ header div {
   justify-content: space-between;
 }
 
-header div h2 {
+header h2 {
   text-align: center;
   margin: auto;
 }
 
-header div input {
+header form input {
   padding: 0 20px;
 }
 
-header div button {
+header form button {
   padding: 10px;
 }
 
@@ -67,25 +67,23 @@ article {
   justify-content: space-between;
 }
 
-article div {
+article p {
   width: 100%;
   height: 90px;
   border: 1px solid black;
   border-radius: 8px;
-}
-
-article div p {
   margin: auto;
   text-align: center;
 }
 
-#botoes {
+article div {
   display: flex;
   justify-content: space-between;
   border: none;
   border-radius: 8px;
 }
 
-#botoes button {
+article div button {
   width: 40%;
+  height: 80px;
 }
