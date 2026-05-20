@@ -4,9 +4,15 @@
   padding: 0;
 }
 
+@font-face {
+  font-family: "Disney";
+  src: url("./WaltographUI-Bold.woff2");
+}
+
 body {
-  width: 100dvw;
-  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }
 
 header {
@@ -14,7 +20,7 @@ header {
   justify-content: space-between;
   padding: 25px;
   flex-grow: 1;
-  background-color: #e1e3db;
+  background-color: #001449;
 }
 
 header form {
@@ -28,20 +34,42 @@ header form {
 header h2 {
   text-align: center;
   margin: auto;
+  font-family: "Disney";
+  color: gold;
 }
 
 header form input {
   padding: 0 20px;
+  border-radius: 30px;
+  border: 2px solid gold;
+  color: gold;
+  background-color: #012677;
+}
+header form input::placeholder {
+  color: gold;
 }
 
 header form button {
   padding: 10px;
+  border-radius: 30px;
+  border: 2px solid gold;
+  color: gold;
+  background-color: #012677;
 }
 
 section {
   text-align: center;
   flex-grow: 1;
   padding-top: 20px;
+  background-image: url("./Assets/disney-has6vy47k75d0bzs.jpg");
+  background-size: cover; /* Faz a imagem cobrir todo o espaço disponível */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  height: auto; /* É importante definir uma altura para que o fundo apareça */
+}
+
+section h1 {
+  color: white;
 }
 
 main {
@@ -51,12 +79,15 @@ main {
   align-items: center;
   gap: 50px;
   padding: 50px;
+  background-color: #012677;
 }
 
 main img {
   width: 550px;
   height: 650px;
   background-color: darkgray;
+  border-radius: 30px;
+  border: 5px solid gold;
 }
 
 article {
@@ -68,12 +99,17 @@ article {
 }
 
 article p {
+  display: flex;
   width: 100%;
   height: 90px;
-  border: 1px solid black;
+  border: 1px solid gold;
   border-radius: 8px;
-  margin: auto;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  color: gold;
+  overflow: hidden; /* Esconde tudo que ultrapassar o tamanho do elemento */
+  white-space: nowrap;
 }
 
 article div {
@@ -86,4 +122,8 @@ article div {
 article div button {
   width: 40%;
   height: 80px;
+  border-radius: 30px;
+  background-color: #012677;
+  color: gold;
+  border: 2px solid gold;
 }
