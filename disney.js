@@ -78,3 +78,5 @@ avancar.addEventListener("click", function () {
   indiceAtual++;
   insertCharacter(personagens[indiceAtual]);
 });
+
+//!!! Correções para fazer: Personalizar site melhor, arrumar o botão voltar para ir para o ultimo indice, arrumar a quantidade de indices por page
