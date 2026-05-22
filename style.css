@@ -4,11 +4,6 @@
   padding: 0;
 }
 
-@font-face {
-  font-family: "Disney";
-  src: url("./WaltographUI-Bold.woff2");
-}
-
 body {
   display: flex;
   flex-direction: column;
@@ -108,7 +103,7 @@ article p {
   justify-content: center;
   border-radius: 30px;
   color: gold;
-  overflow: hidden; /* Esconde tudo que ultrapassar o tamanho do elemento */
+  overflow: hidden;
   white-space: nowrap;
 }
 

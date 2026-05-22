@@ -9,10 +9,11 @@ const input = document.querySelector("#guessCharacter");
 let personagens = [];
 //! variavel que controla o indice exibido
 let indiceAtual = 0;
+let paginaInfo = null;
 // Criação de função assincrona para buscar dados do URL da API da Disney
 async function getCharacter(url) {
   const dados = await (await fetch(url)).json();
-  //console.table(dados);
+  console.log(dados);
   //! Chamamos a função para passar os dados para o filterCharacter
   filterCharacter(dados);
 }
@@ -23,6 +24,7 @@ getCharacter(url);
 function filterCharacter(dados) {
   // A variavel para guardar os dados do "dados.data" que são aonde os personagens estão dentro do link
   personagens = dados.data;
+  paginaInfo = dados.info;
   // Chamamos a função para exibir o personagem no indice atual
   insertCharacter(personagens[indiceAtual]);
 }
@@ -71,12 +73,25 @@ form.addEventListener("submit", function (e) {
 // Criação de eventos para avançar e voltar pelos indices
 voltar.addEventListener("click", function () {
   indiceAtual--;
+
+  if (indiceAtual <= -1) {
+    getCharacter(paginaInfo.previousPage);
+    indiceAtual = 49;
+    return;
+  }
   insertCharacter(personagens[indiceAtual]);
 });
 
 avancar.addEventListener("click", function () {
   indiceAtual++;
+
+  if (indiceAtual >= 50) {
+    getCharacter(paginaInfo.nextPage);
+    indiceAtual = 0;
+    return;
+  }
+
   insertCharacter(personagens[indiceAtual]);
 });
 
-//!!! Correções para fazer: Personalizar site melhor, arrumar o botão voltar para ir para o ultimo indice, arrumar a quantidade de indices por page
+//!!! Correções para fazer: Personalizar site melhor, fazer o try catch
