@@ -95,3 +95,8 @@ avancar.addEventListener("click", function () {
 });
 
 //!!! Correções para fazer: Personalizar site melhor, fazer o try catch
+//! Continuar tentando os erros e arrumar o Princiapl
+//! Fazer os comitts bonitinhos por etapa
+//! Arrumar as formas de busca
+//! Ficar em uma page só
+//Verificar os possíveis erros
