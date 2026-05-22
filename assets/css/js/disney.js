@@ -28,3 +28,21 @@ function insertCharacter(personagem) {
   document.querySelector("#game").textContent =
     personagem.videoGames.join(", ");
 }
+
+function findCharacter() {
+  let valorInput = document.getElementById("guessCharacter").value;
+  const termoBusca = encodeURIComponent(valorInput.trim());
+
+  if (isNaN(valorInput)) {
+    const urlFind = "https://api.disneyapi.dev/character?name=" + termoBusca;
+    getCharacter(urlFind);
+  } else {
+    indiceAtual = Number(valorInput);
+    insertCharacter(personagens[indiceAtual]);
+  }
+}
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  findCharacter();
+});
