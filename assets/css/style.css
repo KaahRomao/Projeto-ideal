@@ -57,7 +57,7 @@ section {
   text-align: center;
   flex-grow: 1;
   padding-top: 20px;
-  background-image: url("./assets/img/download.jpeg");
+  background-image: url("/assets/img/download.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
