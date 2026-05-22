@@ -1,5 +1,6 @@
 const url = "https://api.disneyapi.dev/character";
 const img = document.querySelector("img");
+const button = document.querySelector("button");
 const form = document.querySelector("form");
 const input = document.querySelector("#guessCharacter");
 
@@ -9,6 +10,7 @@ let paginaInfo = null;
 
 async function getCharacter(url) {
   const dados = await (await fetch(url)).json();
+  console.log(dados);
   filterCharacter(dados);
 }
 
@@ -45,4 +47,24 @@ function findCharacter() {
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   findCharacter();
+});
+
+voltar.addEventListener("click", function () {
+  indiceAtual--;
+  if (indiceAtual <= -1) {
+    getCharacter(paginaInfo.previousPage);
+    indiceAtual = 49;
+    return;
+  }
+  insertCharacter(personagens[indiceAtual]);
+});
+
+avancar.addEventListener("click", function () {
+  indiceAtual++;
+  if (indiceAtual >= 50) {
+    getCharacter(paginaInfo.nextPage);
+    indiceAtual = 0;
+    return;
+  }
+  insertCharacter(personagens[indiceAtual]);
 });
