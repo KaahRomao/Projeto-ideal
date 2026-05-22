@@ -1,29 +1,38 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <title>Projeto</title>
-  </head>
-  <body>
-    <header>
-      <h2>TEXTO</h2>
-      <form>
-        <input type="text" placeholder="INPUT" />
-        <button>BTN</button>
-      </form>
-    </header>
-    <section><h1>TEXTO</h1></section>
-    <main>
-      <img src=" " alt="IMG" />
-      <article>
-        <p>TEXTO</p>
-        <p>TEXTO</p>
-        <p>TEXTO</p>
-        <p>TEXTO</p>
-        <div><button>Voltar</button> <button>Avançar</button></div>
-      </article>
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./Assets/css/style.css">
+  <title>Projeto</title>
+</head>
+
+<body>
+  <header>
+    <h2>API da Disney</h2>
+    <form>
+      <input type="text" placeholder="Digite o nome ou ID" id="guessCharacter">
+      <button>Buscar</button>
+    </form>
+  </header>
+  <section>
+    <h1>Disney</h1>
+  </section>
+  <main>
+    <img src=" " alt="Imagem dos personagens da Disney">
+    <article>
+      <p id="id"></p>
+      <p id="name"></p>
+      <p id="film"></p>
+      <p id="game"></p>
+      <div>
+        <button id="voltar">Voltar</button>
+        <button id="avancar">Avançar</button>
+      </div>
+    </article>
+  </main>
+  <script src="./Assets/js/disney.js" defer></script>
+</body>
+
 </html>
