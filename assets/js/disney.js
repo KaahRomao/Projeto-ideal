@@ -96,7 +96,45 @@ avancar.addEventListener("click", function () {
 
 //!!! Correções para fazer: Personalizar site melhor, fazer o try catch
 //! Continuar tentando os erros e arrumar o Princiapl
-//! Fazer os comitts bonitinhos por etapa
 //! Arrumar as formas de busca
 //! Ficar em uma page só
 //Verificar os possíveis erros
+
+//! try/catch resolve:
+
+// Internet caiu
+// API fora do ar / URL inexistente
+// Resposta vem diferente do esperado
+// Fetch falha totalmente
+// Status HTTP diferente de 200:
+// Json inválido
+// Verifica response.ok antes de chamar .json()
+
+//! Verificação antes de chamar a API resolve:
+
+// Usuário digita vazio ou espaços — verifica se o input está vazio antes de fazer o fetch
+// Usuário digita números — você já trata isso
+
+//! Dentro do insertCharacter resolve:
+
+// Personagem sem imagem — verifica se imageUrl existe antes de atribuir
+// Propriedade não existe — verifica se films e videoGames existem antes do .join
+// Array vem vazio — verifica se personagens.length é maior que 0
+
+// usuário digita vazio = Mostra uma string vazia
+// usuário digita espaços = Mostra uma string vazia
+// usuário digita números = ele retorna os personagens com numeros
+// caracteres especiais = array vazio
+// internet caiu = GET https://api.disneyapi.dev/character?name=undefined net::ERR_INTERNET_DISCONNECTED (O fetch falhou)
+// API fora do ar = Ele retorna tudo true, mas array vazio! mas caso seja uma api inexistente (app.js:21  GET https://api.inexistente123456.com=mickey/ net::ERR_NAME_NOT_RESOLVED)
+// resposta demora muito = demorou, mas retornou tudo!
+// resposta vem diferente do esperado caso o fetch falhe = app.js:22 Uncaught (in promise) TypeError: disneyData.json is not a function (ele não pega os dados do url... assim bugando os outros processos)
+// status HTTP diferente de 200: Mostra o satus 404 ou 5xx tbm... posso corrigir com um diferente de 200
+// fetch falha totalmente : api.inexistente123456abcdef.com/:1  Failed to load resource: net::ERR_NAME_NOT_RESOLVED
+// usuário digita nome com acento = Array vazio
+// usuário digita maiúsculo/minúsculo = Retorna o perso certo mesmo com varias alterações de m&m
+// personagem existe mas sem imagem = Colocar alguma imagem ou mensagem para quando não tiver imagem
+// array vem vazio = Colocar mensagens para falar que não existe aquele personagem ou que não achou mesmo
+// propriedade não existe = Colocar mensagem de que naõ existe aquele item em especifico
+// usuário clica várias vezes rápido = a page não atualiza, mas o console log enche de mensagem.
+// limite/rate limit da API = não consegui testar esse... mas no cmç falha porque não recebu dados do url
