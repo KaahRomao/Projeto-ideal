@@ -10,9 +10,21 @@ let personagens = [];
 //! variavel que controla o indice exibido
 let indiceAtual = 0;
 let paginaInfo = null;
+
 // Criação de função assincrona para buscar dados do URL da API da Disney
 async function getCharacter(url) {
-  const dados = await (await fetch(url)).json();
+  try {
+    if (!url) throw new Error("A Api não foi achada!");
+
+    const dadosDisney = await fetch(url);
+    if (!dadosDisney) throw new Error("Fetch não buscou as informações!");
+    const status = dadosDisney.status;
+    const ok = dadosDisney.ok;
+
+    const dados = await dadosDisney.json();
+    if (!dados) throw new Error("Não foi transformada para .json");
+  } catch (error) {}
+
   console.log(dados);
   //! Chamamos a função para passar os dados para o filterCharacter
   filterCharacter(dados);
