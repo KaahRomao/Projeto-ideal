@@ -116,7 +116,7 @@ function findCharacter() {
   } else {
     // Como o indice atual estava vazio, a gente preenche com o valor do input
     // Colocado o Number para transformar em "Number", porque se não tivesse, seria uma string, assim não funcionando
-    indiceAtual = Number(valorInput);
+    indiceAtual = Number(valorInput) - 1;
 
     if (indiceAtual >= 0 && indiceAtual <= 49) {
       // Chama a função de inserir o personagem de acordo com o indice.
@@ -126,6 +126,7 @@ function findCharacter() {
       clearDisplay("Personagem não encontrado");
     }
   }
+  document.querySelector("#guessCharacter").value = "";
 }
 //Criação de evento para que o form não reinicie a cada clique no botão para buscar
 form.addEventListener("submit", function (e) {
