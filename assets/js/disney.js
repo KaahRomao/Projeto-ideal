@@ -63,7 +63,7 @@ function insertCharacter(personagem) {
 
   //Criamos o objeto "personagem" e assim atualiza eles no HTML
   // os .join (", ") são porque aqueles espaços são arrays lá no URL da API.. dai serve para separar eles bonitinho, mesmo que já faça isso automaticamente
-  document.querySelector("#id").textContent = indiceAtual;
+  document.querySelector("#id").textContent = indiceAtual + 1;
   document.querySelector("#name").textContent = personagem.name;
   document.querySelector(".name").textContent = personagem.name;
   if (personagem.films && personagem.films.length > 0) {

@@ -58,6 +58,11 @@ header form button {
   background-color: #012677;
 }
 
+header form button:hover {
+  cursor: pointer;
+  scale: 105%;
+}
+
 section {
   text-align: center;
   flex-grow: 1;
@@ -126,4 +131,9 @@ article div button {
   background-color: #012677;
   color: gold;
   border: 2px solid gold;
+}
+
+article div button:hover {
+  cursor: pointer;
+  scale: 105%;
 }
