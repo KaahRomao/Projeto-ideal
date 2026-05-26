@@ -147,3 +147,4 @@ avancar.addEventListener("click", function () {
   if (indiceAtual > 49) indiceAtual = 0;
   insertCharacter(personagens[indiceAtual]);
 });
+//kkk
