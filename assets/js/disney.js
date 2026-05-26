@@ -58,7 +58,7 @@ function insertCharacter(personagem) {
   if (personagem.imageUrl) {
     image.src = personagem.imageUrl;
   } else {
-    image.src = "/assets/img/placeholder.png";
+    image.src = "./assets/img/placeholder.png";
   }
 
   //Criamos o objeto "personagem" e assim atualiza eles no HTML
@@ -81,7 +81,7 @@ function insertCharacter(personagem) {
 }
 
 function clearDisplay(mensagem) {
-  image.src = "/assets/img/placeholder.png";
+  image.src = "./assets/img/placeholder.png";
   document.querySelector(".name").textContent = mensagem;
   document.querySelector("#id").textContent = "";
   document.querySelector("#name").textContent = "";
