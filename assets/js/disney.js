@@ -5,51 +5,79 @@ const img = document.querySelector("img");
 const button = document.querySelector("button");
 const form = document.querySelector("form");
 const input = document.querySelector("#guessCharacter");
+const voltar = document.querySelector("#voltar");
+const avancar = document.querySelector("#avancar");
 //! variavel de array vazia para guardar os dados da API para quando a API responder
 let personagens = [];
 //! variavel que controla o indice exibido
 let indiceAtual = 0;
-let paginaInfo = null;
 
 // Criação de função assincrona para buscar dados do URL da API da Disney
-async function getCharacter(url) {
+async function getCharacter(url, indice = 0) {
   try {
     if (!url) throw new Error("A Api não foi achada!");
-
     const dadosDisney = await fetch(url);
-    if (!dadosDisney) throw new Error("Fetch não buscou as informações!");
-    const status = dadosDisney.status;
-    const ok = dadosDisney.ok;
-
+    if (dadosDisney.ok === false)
+      throw new Error("Fetch não buscou as informações!");
     const dados = await dadosDisney.json();
     if (!dados) throw new Error("Não foi transformada para .json");
-  } catch (error) {}
-
-  console.log(dados);
-  //! Chamamos a função para passar os dados para o filterCharacter
-  filterCharacter(dados);
+    filterCharacter(dados, indice);
+  } catch (error) {
+    console.error(error);
+    console.error("Algo deu errado, chefe!");
+  }
 }
 // Chama essa função para rodar os fetch
 getCharacter(url);
 
 // Função para filtrar os dados que queremos
-function filterCharacter(dados) {
+function filterCharacter(dados, indiceAtual = 0) {
   // A variavel para guardar os dados do "dados.data" que são aonde os personagens estão dentro do link
   personagens = dados.data;
-  paginaInfo = dados.info;
+
+  if (personagens.length === 0) {
+    console.log("Personagem não encontrado!");
+    document.querySelector(".name").textContent = "Personagem não encontrado!";
+    return;
+  }
   // Chamamos a função para exibir o personagem no indice atual
   insertCharacter(personagens[indiceAtual]);
 }
 // função para inserir os dados no HTML
 function insertCharacter(personagem) {
+  if (!personagem) {
+    console.log("Personagem não encontrado!");
+    document.querySelector(".name").textContent = "Personagem não encontrado!";
+    return;
+  }
+
+  if (personagem.imageUrl) {
+    img.src = personagem.imageUrl;
+    img.addEventListener("error", function () {
+      console.log("imagem quebrou");
+      img.src = "assets/img/ChatGPTImage25demai.de2026,18_55_24.png";
+    });
+  } else {
+    img.src = "assets/img/ChatGPTImage25demai.de2026,18_55_24.png";
+  }
+
   //Criamos o objeto "personagem" e assim atualiza eles no HTML
   // os .join (", ") são porque aqueles espaços são arrays lá no URL da API.. dai serve para separar eles bonitinho, mesmo que já faça isso automaticamente
-  img.src = personagem.imageUrl;
-  document.querySelector("#id").textContent = personagem._id;
+  document.querySelector("#id").textContent = indiceAtual;
   document.querySelector("#name").textContent = personagem.name;
-  document.querySelector("#film").textContent = personagem.films.join(", ");
-  document.querySelector("#game").textContent =
-    personagem.videoGames.join(", ");
+  document.querySelector(".name").textContent = personagem.name;
+  if (personagem.films && personagem.films.length > 0) {
+    document.querySelector("#film").textContent = personagem.films.join(", ");
+  } else {
+    document.querySelector("#film").textContent = "Nenhum filme encontrado";
+  }
+
+  if (personagem.videoGames && personagem.videoGames.length > 0) {
+    document.querySelector("#game").textContent =
+      personagem.videoGames.join(", ");
+  } else {
+    document.querySelector("#game").textContent = "Nenhum jogo encontrado";
+  }
 }
 
 //Funçãoo que para achar o personagem no Input
@@ -58,6 +86,12 @@ function findCharacter() {
   let valorInput = document.getElementById("guessCharacter").value;
   // A variavel "termoBusca" serve para tirar aqueles "%20" para pesquisar... e troca por espaços
   const termoBusca = encodeURIComponent(valorInput.trim());
+  if (valorInput.trim() === "") {
+    console.log("Personagem não encontrado!");
+    document.querySelector(".name").textContent = "Personagem não encontrado!";
+    img.src = "/assets/img/ChatGPTImage25demai.de2026,18_55_24.png";
+    return;
+  }
 
   // Um if/else para saber se é number ou string para poder pesquisar por nome ou indice
   // O parâmetro (isNaN(valorinput)) verifica se é number ou não
@@ -70,8 +104,14 @@ function findCharacter() {
     // Como o indice atual estava vazio, a gente preenche com o valor do input
     // Colocado o Number para transformar em "Number", porque se não tivesse, seria uma string, assim não funcionando
     indiceAtual = Number(valorInput);
-    // Chama a função de inserir o personagem de acordo com o indice.
-    insertCharacter(personagens[indiceAtual]);
+
+    if (indiceAtual >= 0 && indiceAtual <= 49) {
+      // Chama a função de inserir o personagem de acordo com o indice.
+      insertCharacter(personagens[indiceAtual]);
+    } else {
+      console.log("personagem não encontrado");
+      document.querySelector(".name").textContent = "Personagem não encontrado";
+    }
   }
 }
 //Criação de evento para que o form não reinicie a cada clique no botão para buscar
@@ -85,24 +125,13 @@ form.addEventListener("submit", function (e) {
 // Criação de eventos para avançar e voltar pelos indices
 voltar.addEventListener("click", function () {
   indiceAtual--;
-
-  if (indiceAtual <= -1) {
-    getCharacter(paginaInfo.previousPage);
-    indiceAtual = 49;
-    return;
-  }
+  if (indiceAtual < 0) indiceAtual = 49;
   insertCharacter(personagens[indiceAtual]);
 });
 
 avancar.addEventListener("click", function () {
   indiceAtual++;
-
-  if (indiceAtual >= 50) {
-    getCharacter(paginaInfo.nextPage);
-    indiceAtual = 0;
-    return;
-  }
-
+  if (indiceAtual > 49) indiceAtual = 0;
   insertCharacter(personagens[indiceAtual]);
 });
 
