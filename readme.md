@@ -13,7 +13,7 @@ Funcionalidades:
 - Imagem placeholder para personagens sem foto
 - Retorno automático após busca sem resultado
 
-Acesso: [(https://kaahromao.github.io/Projeto-ideal/)]
+Acesso: [https://kaahromao.github.io/Projeto-ideal/]
 
 Autor: Kaue Romao - github.com/KaahRomao
 
