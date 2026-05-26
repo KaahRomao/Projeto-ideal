@@ -2,6 +2,10 @@
 const url = "https://api.disneyapi.dev/character";
 // variaveis que importam do HTML
 const img = document.querySelector("img");
+img.addEventListener("error", function () {
+  console.log("entrou no error");
+  img.src = "/assets/img/placeholder.png";
+});
 const button = document.querySelector("button");
 const form = document.querySelector("form");
 const input = document.querySelector("#guessCharacter");
@@ -37,7 +41,7 @@ function filterCharacter(dados, indiceAtual = 0) {
 
   if (personagens.length === 0) {
     console.log("Personagem não encontrado!");
-    document.querySelector(".name").textContent = "Personagem não encontrado!";
+    clearDisplay("Personagem não encontrado!");
     return;
   }
   // Chamamos a função para exibir o personagem no indice atual
@@ -47,18 +51,14 @@ function filterCharacter(dados, indiceAtual = 0) {
 function insertCharacter(personagem) {
   if (!personagem) {
     console.log("Personagem não encontrado!");
-    document.querySelector(".name").textContent = "Personagem não encontrado!";
+    clearDisplay("Personagem não encontrado!");
     return;
   }
 
   if (personagem.imageUrl) {
     img.src = personagem.imageUrl;
-    img.addEventListener("error", function () {
-      console.log("imagem quebrou");
-      img.src = "assets/img/ChatGPTImage25demai.de2026,18_55_24.png";
-    });
   } else {
-    img.src = "assets/img/ChatGPTImage25demai.de2026,18_55_24.png";
+    img.src = "/assets/img/placeholder.png";
   }
 
   //Criamos o objeto "personagem" e assim atualiza eles no HTML
@@ -80,6 +80,20 @@ function insertCharacter(personagem) {
   }
 }
 
+function clearDisplay(mensagem) {
+  img.src = "/assets/img/placeholder.png";
+  document.querySelector(".name").textContent = mensagem;
+  document.querySelector("#id").textContent = "";
+  document.querySelector("#name").textContent = "";
+  document.querySelector("#film").textContent = "";
+  document.querySelector("#game").textContent = "";
+  document.querySelector("#guessCharacter").value = "";
+
+  setTimeout(function () {
+    getCharacter(url);
+  }, 3000);
+}
+
 //Funçãoo que para achar o personagem no Input
 function findCharacter() {
   // Criamos uma variavel para guardar o valor do Input
@@ -88,8 +102,7 @@ function findCharacter() {
   const termoBusca = encodeURIComponent(valorInput.trim());
   if (valorInput.trim() === "") {
     console.log("Personagem não encontrado!");
-    document.querySelector(".name").textContent = "Personagem não encontrado!";
-    img.src = "/assets/img/ChatGPTImage25demai.de2026,18_55_24.png";
+    clearDisplay("Personagem não encontrado!");
     return;
   }
 
@@ -110,7 +123,7 @@ function findCharacter() {
       insertCharacter(personagens[indiceAtual]);
     } else {
       console.log("personagem não encontrado");
-      document.querySelector(".name").textContent = "Personagem não encontrado";
+      clearDisplay("Personagem não encontrado");
     }
   }
 }
@@ -149,12 +162,6 @@ avancar.addEventListener("click", function () {
 // Fetch falha totalmente
 // Status HTTP diferente de 200:
 // Json inválido
-// Verifica response.ok antes de chamar .json()
-
-//! Verificação antes de chamar a API resolve:
-
-// Usuário digita vazio ou espaços — verifica se o input está vazio antes de fazer o fetch
-// Usuário digita números — você já trata isso
 
 //! Dentro do insertCharacter resolve:
 
