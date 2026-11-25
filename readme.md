@@ -1,22 +1,18 @@
 # Disney Character Explorer
 
-Aplicação web que consome a Disney API para explorar personagens da Disney.
-Permite busca por nome ou índice e navegação entre personagens.
+Criei um explorador de personagens para praticar JavaScript, manipulação do DOM e consumo de API com `fetch` e `async/await`.
 
-Tecnologias: HTML5, CSS3, JavaScript
+[Abra a demonstração](https://kaahromao.github.io/Projeto-ideal/)
 
-Funcionalidades:
+## O que dá para fazer
 
-- Busca por nome ou índice (0-49)
-- Navegação circular entre 50 personagens
-- Tratamento de erros e validação de input
-- Imagem placeholder para personagens sem foto
-- Retorno automático após busca sem resultado
+- Buscar um personagem por nome ou pela posição na lista inicial, de 1 a 50.
+- Navegar pelos personagens e ver a imagem, os filmes e os jogos em que aparecem, quando disponíveis.
+- Voltar ao catálogo inicial se uma busca ficar sem resultado.
 
-Acesso: [https://kaahromao.github.io/Projeto-ideal/]
+## Rodar localmente
 
-Autor: Kaue Romao - github.com/KaahRomao
+Clone o repositório e abra `index.html` no navegador. A consulta à [Disney API](https://api.disneyapi.dev/character) precisa de conexão à internet.
 
-## Authors
-
-- [Kauê Romão](https://www.github.com/KaahRomao)
+**Tecnologias** · HTML, CSS e JavaScript  
+**Autor** · Kauê Romão
